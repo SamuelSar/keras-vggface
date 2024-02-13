@@ -14,8 +14,7 @@ from keras.layers import Flatten, Dense, Input, GlobalAveragePooling2D, \
     AveragePooling2D, Reshape, Permute, multiply
 from keras_applications.imagenet_utils import _obtain_input_shape
 from keras.src.utils import layer_utils
-# from keras.src.utils.data_utils import get_file
-from keras.utils.data_utils import get_file
+from keras.src.utils.data_utils import get_file
 from keras import backend as K
 from keras_vggface import utils
 from keras.src.utils.layer_utils import get_source_inputs
