@@ -152,16 +152,16 @@ def resnet_identity_block(input_tensor, kernel_size, filters, stage, block,
 
     x = Conv2D(filters1, (1, 1), use_bias=bias, name=conv1_reduce_name)(
         input_tensor)
-    x = BatchNormalization(axis=bn_axis, name=conv1_reduce_name + "/bn")(x)
+    x = BatchNormalization(axis=bn_axis, name=conv1_reduce_name + "_bn")(x)
     x = Activation('relu')(x)
 
     x = Conv2D(filters2, kernel_size, use_bias=bias,
                padding='same', name=conv3_name)(x)
-    x = BatchNormalization(axis=bn_axis, name=conv3_name + "/bn")(x)
+    x = BatchNormalization(axis=bn_axis, name=conv3_name + "_bn")(x)
     x = Activation('relu')(x)
 
     x = Conv2D(filters3, (1, 1), use_bias=bias, name=conv1_increase_name)(x)
-    x = BatchNormalization(axis=bn_axis, name=conv1_increase_name + "/bn")(x)
+    x = BatchNormalization(axis=bn_axis, name=conv1_increase_name + "_bn")(x)
 
     x = layers.add([x, input_tensor])
     x = Activation('relu')(x)
@@ -183,20 +183,20 @@ def resnet_conv_block(input_tensor, kernel_size, filters, stage, block,
 
     x = Conv2D(filters1, (1, 1), strides=strides, use_bias=bias,
                name=conv1_reduce_name)(input_tensor)
-    x = BatchNormalization(axis=bn_axis, name=conv1_reduce_name + "/bn")(x)
+    x = BatchNormalization(axis=bn_axis, name=conv1_reduce_name + "_bn")(x)
     x = Activation('relu')(x)
 
     x = Conv2D(filters2, kernel_size, padding='same', use_bias=bias,
                name=conv3_name)(x)
-    x = BatchNormalization(axis=bn_axis, name=conv3_name + "/bn")(x)
+    x = BatchNormalization(axis=bn_axis, name=conv3_name + "_bn")(x)
     x = Activation('relu')(x)
 
     x = Conv2D(filters3, (1, 1), name=conv1_increase_name, use_bias=bias)(x)
-    x = BatchNormalization(axis=bn_axis, name=conv1_increase_name + "/bn")(x)
+    x = BatchNormalization(axis=bn_axis, name=conv1_increase_name + "_bn")(x)
 
     shortcut = Conv2D(filters3, (1, 1), strides=strides, use_bias=bias,
                       name=conv1_proj_name)(input_tensor)
-    shortcut = BatchNormalization(axis=bn_axis, name=conv1_proj_name + "/bn")(
+    shortcut = BatchNormalization(axis=bn_axis, name=conv1_proj_name + "_bn")(
         shortcut)
 
     x = layers.add([x, shortcut])
